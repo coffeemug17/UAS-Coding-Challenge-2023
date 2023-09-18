@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./MultiplicationPanel.css";
 
-export default function MultiplicationPanel() {
+export default function MultiplicationPanel({ size }) {
     const [history, setHistory] = useState([]);
     const [currProd, setCurrProd] = useState(null);
 
@@ -20,6 +20,18 @@ export default function MultiplicationPanel() {
             <h2>Multiplication</h2>
             <table>
                 <tbody>
+                    {Array.from({ length: size }).map((_, row) => (
+                        <tr key={row}>
+                            {Array.from({ length: size }).map((_, col) => (
+                                <td key={col}
+                                    className={row === col ? 'highlight' : ''}
+                                    onClick={() => handleClick(row + 1, col + 1)}
+                                >
+                                    {row === col ? '' : currProd}
+                                </td>
+                            ))}
+                        </tr>
+                    ))}
                 </tbody>
             </table>
         </div>

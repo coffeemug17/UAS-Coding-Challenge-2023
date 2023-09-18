@@ -17,7 +17,7 @@ function App() {
         <input type="number" 
           id="tableSize" 
           value={tableSize} 
-          onChange={(e) => setTableSize(parseInt(e.target.value, 12))}
+          onChange={(e) => setTableSize(parseInt(e.target.value))}
         />
       </div>
     </div>
