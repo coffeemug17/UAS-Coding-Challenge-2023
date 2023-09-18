@@ -19,15 +19,25 @@ export default function MultiplicationPanel({ size }) {
         <div className="multiplication-panel">
             <h2>Multiplication</h2>
             <table>
+                <thead>
+                    
+                    <tr>
+                        <th>X</th>
+                        {Array.from({ length: size }).map((_, col) => (
+                            <th key={col}>{col + 1}</th>
+                        ))}
+                    </tr>
+                </thead>
                 <tbody>
                     {Array.from({ length: size }).map((_, row) => (
                         <tr key={row}>
+                            <th>{row + 1}</th>
                             {Array.from({ length: size }).map((_, col) => (
                                 <td key={col}
                                     className={row === col ? 'highlight' : ''}
                                     onClick={() => handleClick(row + 1, col + 1)}
                                 >
-                                    {row === col ? '' : currProd}
+                                    {currProd}
                                 </td>
                             ))}
                         </tr>
