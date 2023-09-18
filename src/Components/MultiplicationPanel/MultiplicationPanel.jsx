@@ -1,8 +1,7 @@
 import { useState } from "react";
 import "./MultiplicationPanel.css";
 
-export default function MultiplicationPanel({ size }) {
-    const [history, setHistory] = useState([]);
+export default function MultiplicationPanel({ size, history, setHistory }) {
     const [currProd, setCurrProd] = useState(null);
 
     const handleClick = (row, col) => {
