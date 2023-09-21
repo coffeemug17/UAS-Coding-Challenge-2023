@@ -3,10 +3,14 @@ import "./MultiplicationPanel.css";
 
 export default function MultiplicationPanel({ size, history, setHistory }) {
     const [currProd, setCurrProd] = useState(null);
+    const [selected, setSelected] = useState(null);
 
     const handleClick = (row, col) => {
-        const product = row * col;
+        const product = (row + 1) * (col + 1);
         setCurrProd(product);
+        setSelected({ row, col, product });
+        row = row + 1;
+        col = col + 1;
 
         //  Add the product to the history if it's not already there
         if (!history.some((prod) => prod.row === row && prod.col === col)) {
@@ -33,10 +37,10 @@ export default function MultiplicationPanel({ size, history, setHistory }) {
                             <th>{row + 1}</th>
                             {Array.from({ length: size }).map((_, col) => (
                                 <td key={col}
-                                    className={row === col ? 'highlight' : ''}
-                                    onClick={() => handleClick(row + 1, col + 1)}
+                                    className={selected?.row === row && selected?.col === col ? 'highlight' : ''}
+                                    onClick={() => handleClick(row, col)}
                                 >
-                                    {currProd}
+                                    {selected?.row === row && selected?.col === col ? selected?.product : ""}
                                 </td>
                             ))}
                         </tr>
